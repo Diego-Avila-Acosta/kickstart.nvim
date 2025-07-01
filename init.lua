@@ -284,6 +284,29 @@ require('lazy').setup({
     },
   },
 
+  {
+    'chrisgrieser/nvim-lsp-endhints',
+    event = 'LspAttach',
+    opts = {
+      icons = {
+        type = '󰜁 ',
+        parameter = '󰏪 ',
+        offspec = ' ', -- hint kind not defined in official LSP spec
+        unknown = ' ', -- hint kind is nil
+      },
+      label = {
+        truncateAtChars = 100,
+        padding = 1,
+        marginLeft = 0,
+        sameKindSeparator = ', ',
+      },
+      extmark = {
+        priority = 50,
+      },
+      autoEnableHints = true,
+    }, -- required, even if empty
+  },
+
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -674,7 +697,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        rust_analyzer = {},
+        -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -851,6 +874,15 @@ require('lazy').setup({
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
+
+        menu = {
+          draw = {
+            columns = {
+              { 'label', 'label_description', gap = 1 },
+              { 'kind_icon', 'kind', gap = 1 },
+            },
+          },
+        },
       },
 
       sources = {
